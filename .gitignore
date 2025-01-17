@@ -1,0 +1,6 @@
+# Build Folders
+bin/
+obj/
+
+# ASP.NET Temporary Files
+*.vs/
