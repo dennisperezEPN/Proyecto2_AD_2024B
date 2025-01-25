@@ -7,6 +7,7 @@ using System.Web.Http;
 using System.Data.Entity;
 using GestionTareas_backend.DAL;
 using GestionTareas_backend.Models;
+using GestionTareas_backend.Services;
 
 
 namespace GestionTareas_backend.Controllers
@@ -47,6 +48,8 @@ namespace GestionTareas_backend.Controllers
             }
 
             // Se agrega el usuario
+            string hashedPassword = Hasher.HashPassword(usuario.password);
+            usuario.password = hashedPassword; // Se guarda el hash de la contrasena en la BD
             bd.Usuarios.Add(usuario);
             bd.SaveChanges();
 
