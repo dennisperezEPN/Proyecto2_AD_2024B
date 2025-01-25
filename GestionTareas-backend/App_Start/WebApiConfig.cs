@@ -1,7 +1,11 @@
-﻿using System;
+﻿using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web.Http;
+using Microsoft.Owin.Security.Jwt;
+
 
 namespace GestionTareas_backend
 {
@@ -19,6 +23,7 @@ namespace GestionTareas_backend
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
         }
     }
 }
