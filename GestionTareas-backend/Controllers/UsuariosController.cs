@@ -8,6 +8,7 @@ using System.Data.Entity;
 using GestionTareas_backend.DAL;
 using GestionTareas_backend.Models;
 using GestionTareas_backend.Services;
+using System.Security.Claims;
 
 
 namespace GestionTareas_backend.Controllers
@@ -17,6 +18,7 @@ namespace GestionTareas_backend.Controllers
         private AppDbContext bd = new AppDbContext();
 
         // Solicitudes para obtener usuarios
+        // [Authorize]
         [HttpGet]
         public IEnumerable<Usuario> ObtenerUsuarios()
         {
@@ -37,12 +39,13 @@ namespace GestionTareas_backend.Controllers
         }
 
         // Solicitud para crear un usuario
+        //[Authorize(Roles = "admin")]
         [HttpPost]
         public IHttpActionResult CrearUsuario(Usuario usuario)
         {
             // Se comprueba que los datos cumplan con las reglas de 
             // validacion definidas en el modelo
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
