@@ -49,14 +49,14 @@ namespace GestionTareas_backend.Controllers
             };
 
             // Genera el token
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(ConfigurationManager.AppSettings["JwtSecret"]));
+            var key = new SymmetricSecurityKey(Convert.FromBase64String(ConfigurationManager.AppSettings["JwtSecret"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             var token = new JwtSecurityToken(
                 issuer: ConfigurationManager.AppSettings["JwtIssuer"],
                 audience: ConfigurationManager.AppSettings["JwtAudience"],
                 claims: claims,
-                expires: DateTime.Now.AddMinutes(30),
+                expires: DateTime.UtcNow.AddDays(30),
                 signingCredentials: creds
             );
 
